@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">iTune Search</string>
+
+    <string name="empty_list">List is empty</string>
+    <string name="error_message">Something went wrong</string>
+    <string name="sort">Sort</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+
+
+    <string-array name="array_sort_album">
+        <item>Release date</item>
+        <item>Collection</item>
+        <item>Track</item>
+        <item>Artist</item>
+        <item>Price - Low to High</item>
+        <item>Price - High to Low</item>
+    </string-array>
+</resources>

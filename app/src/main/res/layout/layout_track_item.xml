@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.rtr.itunesearch.utils.DateTimeUtils" />
+
+        <variable
+            name="model"
+            type="com.rtr.itunesearch.model.TrackDataModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewTrack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10_dp"
+        android:layout_marginTop="@dimen/dimen_10_dp"
+        android:layout_marginEnd="@dimen/dimen_10_dp"
+        android:elevation="@dimen/dimen_2_dp"
+        app:cardBackgroundColor="@{model.isSelected ? @color/selectedColor : @color/white }"
+        app:cardCornerRadius="@dimen/dimen_8_dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_8_dp">
+
+            <ImageView
+                android:id="@+id/imageTrack"
+                loadImage="@{model.imageUrl}"
+                android:layout_width="@dimen/dimen_75_dp"
+                android:layout_height="@dimen/dimen_75_dp"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_10_dp"
+                android:singleLine="true"
+                android:text="@{model.price.toString() + '$'}"
+                android:textSize="@dimen/font_size_24_sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageTrack"
+                app:layout_constraintStart_toEndOf="@+id/imageTrack"
+                app:layout_constraintTop_toTopOf="@+id/imageTrack" />
+
+            <TextView
+                android:id="@+id/textViewAddRemoveItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_10_dp"
+                android:layout_marginEnd="@dimen/dimen_10_dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{model::onClickAddToCart}"
+                android:singleLine="true"
+                android:text="@{model.isSelected ? @string/remove : @string/add}"
+                android:textSize="@dimen/font_size_18_sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageTrack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageTrack" />
+
+            <TextView
+                android:id="@+id/textViewTrackName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10_dp"
+                android:maxLines="2"
+                android:text="@{model.trackName}"
+                android:textSize="@dimen/font_size_16_sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageTrack" />
+
+            <TextView
+                android:id="@+id/textViewArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5_dp"
+                android:maxLines="2"
+                android:text="@{model.artistName}"
+                android:textSize="@dimen/font_size_14_sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTrackName" />
+
+            <TextView
+                android:id="@+id/textViewCollection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5_dp"
+                android:maxLines="2"
+                android:text="@{model.collectionName}"
+                android:textSize="@dimen/font_size_14_sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewArtist" />
+
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5_dp"
+                android:maxLines="2"
+                android:text="@{DateTimeUtils.INSTANCE.getDateFromMillis(model.releaseDate)}"
+                android:textSize="@dimen/font_size_14_sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCollection" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

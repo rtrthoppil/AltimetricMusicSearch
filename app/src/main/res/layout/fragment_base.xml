@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rtr.itunesearch.base.BaseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutBaseFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/layoutBaseFragmentContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:visibility="@{ viewModel.showContent ? View.VISIBLE : View.GONE }" />
+
+        <include
+            android:id="@+id/includedLayoutProgressView"
+            layout="@layout/layout_common_progress"
+            android:visibility="@{ viewModel.showProgress ? View.VISIBLE : View.GONE }" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
